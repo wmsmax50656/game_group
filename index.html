@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Game Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              diep: {
+                bg: '#CDCDCD',     // Light background
+                grid: '#B4B4B4',   // Grid lines
+                dark: '#555555',   // Borders/Text stroke
+                blue: '#00B2E1',   // Player
+                red: '#F14E54',    // Enemy
+                green: '#00E16E',  // Success/Food
+                purple: '#BF7FF5', // Score/Drone
+                yellow: '#FFEB3B', // Neutral
+              }
+            },
+            fontFamily: {
+              sans: ['Pretendard', 'sans-serif'],
+              mono: ['Courier New', 'monospace'],
+            },
+            boxShadow: {
+              'vector': '4px 4px 0px #555555', // Hard shadow
+            },
+            borderWidth: {
+              '3': '3px',
+              '4': '4px',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+      
+      body {
+        background-color: #CDCDCD;
+        color: #555555;
+        overflow-x: hidden;
+      }
+      
+      /* IO Game Style Infinite Grid - Light Mode */
+      
+      .bg-grid {
+        background-color: #CDCDCD;
+        background-image: 
+          linear-gradient(#B4B4B4 1.5px, transparent 1.5px),
+          linear-gradient(90deg, #B4B4B4 1.5px, transparent 1.5px);
+        background-size: 25px 25px; /* Smaller, tighter grid like Diep.io */
+        background-position: center top;
+      }
+      
+      /* Hexagon Shape Utility */
+      
+      .clip-hexagon {
+        clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      }
+      
+      /* Custom scrollbar */
+      
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #CDCDCD; 
+        border-left: 2px solid #555555;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #555555; 
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #F14E54; 
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/game_group/assets/index-CrAqoNhS.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+</body>
+</html>
