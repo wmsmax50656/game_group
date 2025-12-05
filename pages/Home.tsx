@@ -10,9 +10,17 @@ const Home: React.FC = () => {
       id: "1",
       title: "네온 테트리스",
       description: "고전 명작 테트리스를 모던한 스타일로 재해석했습니다. 빠른 반응속도와 전략이 필요한 퍼즐 게임입니다.",
-      thumbnailUrl: "https://picsum.photos/400/300", 
+      thumbnailUrl: "https://picsum.photos/400/300?random=1", 
       tags: ["IO", "PUZZLE", "RHYTHM"],
       path: "/neon-tetris"
+    },
+    {
+      id: "2",
+      title: "폴리 리듬 마스터",
+      description: "3박자와 4박자가 겹쳐지는 복합 리듬을 시각적으로 경험하세요. 타이밍 감각을 극한으로 시험하는 리듬 게임입니다.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=2", 
+      tags: ["RHYTHM", "MUSIC", "HARD"],
+      path: "/polyrhythm"
     }
   ]);
 
