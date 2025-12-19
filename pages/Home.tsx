@@ -24,14 +24,14 @@ const Home: React.FC = () => {
       tags: ["RHYTHM", "MUSIC", "HARD"],
       path: "/polyrhythm"
     },
-    // 3. [배너 추가] 한탕 특공대 (Hantang)
+    // 3. [배너] 한탕 특공대 (준비중)
     {
       id: "3",
       title: "한탕 특공대 (Hantang)",
       description: "로그라이크 서바이벌! 몰려오는 적들을 막아내고 장비를 강화하여 최후의 생존자가 되세요.",
       thumbnailUrl: "https://picsum.photos/400/300?random=99", 
       tags: ["SURVIVAL", "ACTION", "RPG"],
-      path: "/hantang" // 구현하셨다면 연결되고, 안 하셨다면 빈 화면이 뜹니다.
+      path: "/hantang"
     },
     // --- 예정작 배너들 ---
     {
@@ -112,7 +112,10 @@ const Home: React.FC = () => {
 
         <button 
           className="group relative inline-flex items-center gap-4 px-10 py-5 bg-diep-blue text-white font-black text-2xl uppercase tracking-wider border-4 border-diep-dark shadow-vector hover:bg-diep-blue/90 hover:-translate-y-1 transition-all active:translate-y-0 active:shadow-none"
-          onClick={playClickSound}
+          onClick={() => {
+            playClickSound();
+            window.location.reload(); // [수정됨] 클릭 시 페이지 새로고침
+          }}
         >
           <Crosshair className="w-8 h-8 stroke-[3px]" />
           Enter World
