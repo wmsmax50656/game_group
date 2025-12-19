@@ -1,39 +1,76 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import Desktop from './components/Desktop';
+import UACPrompt from './components/UACPrompt';
+import Installer from './components/Installer';
+import ChaosLayer from './components/ChaosLayer';
+import WalletTheft from './components/WalletTheft';
+import FinalError from './components/FinalError';
+import BSOD from './components/BSOD';
+import GameOver from './components/GameOver';
+import { AppPhase } from './types';
 
-const ComingSoon: React.FC = () => {
-  // 현재 주소(URL)를 가져와서 게임 이름을 추측합니다.
-  const location = useLocation();
-  const gameName = location.pathname.replace('/', '').toUpperCase();
+const HackingSim: React.FC = () => {
+  const [phase, setPhase] = useState<AppPhase>(AppPhase.DESKTOP);
+
+  const startSequence = () => setPhase(AppPhase.UAC_PROMPT);
+  const handleUACConfirm = () => setPhase(AppPhase.INSTALLING);
+  const handleUACCancel = () => setPhase(AppPhase.DESKTOP);
+  const triggerChaos = () => setPhase(AppPhase.CHAOS);
+  const finishChaos = () => setPhase(AppPhase.WALLET_THEFT);
+  const finishTheft = () => setPhase(AppPhase.FINAL_ERROR);
+  const triggerRealBSOD = () => setPhase(AppPhase.BSOD);
+  const showGameOver = () => setPhase(AppPhase.GAMEOVER);
+  const restartApp = () => setPhase(AppPhase.DESKTOP);
 
   return (
-    <div className="flex-grow flex flex-col items-center justify-center p-4 min-h-[60vh] text-center bg-gray-900 text-white font-sans">
-      {/* 뒤로 가기 버튼 */}
-      <div className="absolute top-4 left-4">
-        <Link 
-          to="/" 
-          className="px-6 py-2 font-bold text-white bg-gray-800 border border-gray-600 hover:bg-gray-700 hover:border-white transition-all text-xs uppercase tracking-widest"
-        >
-          ← BACK TO HUB
-        </Link>
-      </div>
+    // [수정됨] min-h-[80vh] -> h-[85vh] 로 변경
+    // 부모 높이가 고정되어야 내부의 바탕화면(h-full)이 꽉 찹니다.
+    <div className="w-full h-[85vh] relative overflow-hidden bg-black select-none font-[Segoe UI] border-x-4 border-b-4 border-gray-800 rounded-b-xl shadow-2xl">
+      
+      {/* Layer 0: Desktop */}
+      {phase !== AppPhase.BSOD && phase !== AppPhase.GAMEOVER && (
+         <Desktop onRunCheat={startSequence} />
+      )}
 
-      <div className="animate-bounce mb-8 text-6xl">🚧</div>
-      
-      <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
-        {gameName}
-      </h1>
-      
-      <div className="space-y-2">
-        <p className="text-2xl font-bold text-yellow-400 animate-pulse">
-          업데이트 예정
-        </p>
-        <p className="text-gray-400">
-          개발자가 열심히 만들고 있습니다. 조금만 기다려주세요!
-        </p>
-      </div>
+      {/* Layer 1: UAC Prompt */}
+      {phase === AppPhase.UAC_PROMPT && (
+        <UACPrompt onConfirm={handleUACConfirm} onCancel={handleUACCancel} />
+      )}
+
+      {/* Layer 2: Installer */}
+      {phase === AppPhase.INSTALLING && (
+        <>
+            <div className="absolute inset-0 bg-black/20 z-40" />
+            <Installer onGlitchStart={triggerChaos} />
+        </>
+      )}
+
+      {/* Layer 3: Chaos */}
+      {phase === AppPhase.CHAOS && (
+        <ChaosLayer onComplete={finishChaos} />
+      )}
+
+      {/* Layer 4: Wallet Theft */}
+      {phase === AppPhase.WALLET_THEFT && (
+        <WalletTheft onComplete={finishTheft} />
+      )}
+
+       {/* Layer 5: Final Error */}
+      {phase === AppPhase.FINAL_ERROR && (
+        <FinalError onComplete={triggerRealBSOD} />
+      )}
+
+      {/* Layer 6: BSOD */}
+      {phase === AppPhase.BSOD && (
+        <BSOD onComplete={showGameOver} />
+      )}
+
+      {/* Layer 7: Game Over */}
+      {phase === AppPhase.GAMEOVER && (
+        <GameOver onRestart={restartApp} />
+      )}
     </div>
   );
 };
 
-export default ComingSoon;
+export default HackingSim;

@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
+/* --- GLOBAL ATMOSPHERE --- */
+/* :global()을 사용하면 클래스 이름이 바뀌지 않아서 기존 코드와 호환됩니다 */
+
+:global(.casino-bg) {
+  background: radial-gradient(circle at 50% 30%, #4a2c2a 0%, #1a0f0d 60%, #000000 100%);
+  font-family: 'VT323', monospace;
+  color: #dcdcdc;
+}
+
+:global(.global-noise) {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- MATERIALS --- */
+
+:global(.chrome-gradient) {
+  background: linear-gradient(135deg, #a8a8a8 0%, #f0f0f0 40%, #707070 51%, #e0e0e0 100%);
+  box-shadow: 
+    inset 1px 1px 0px rgba(255,255,255,0.7),
+    inset -1px -1px 0px rgba(0,0,0,0.5);
+}
+
+:global(.gold-gradient) {
+  background: linear-gradient(to bottom, #FFF8DB 0%, #E6C25B 45%, #B38612 55%, #FFF8DB 100%);
+  box-shadow: 
+     inset 1px 1px 3px rgba(255,255,255,0.6),
+     inset -1px -1px 3px rgba(0,0,0,0.4),
+     0 2px 4px rgba(0,0,0,0.5);
+  border: 1px solid #8B6914;
+}
+
+:global(.deep-wood) {
+  background-color: #3e2723;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)),
+    url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  box-shadow: 
+    inset 4px 4px 15px rgba(255,255,255,0.05),
+    inset -4px -4px 20px rgba(0,0,0,0.8),
+    0 30px 60px rgba(0,0,0,0.9);
+}
+
+:global(.recessed-panel) {
+  background: #151515;
+  box-shadow: 
+    inset 0 10px 20px rgba(0,0,0,1), 
+    inset 0 2px 5px rgba(0,0,0,1),
+    0 1px 0 rgba(255,255,255,0.1);
+  border-radius: 20px;
+}
+
+/* --- CRT MONITOR --- */
+
+:global(.crt-frame) {
+  border-radius: 60px / 40px; 
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  box-shadow: 
+      inset 0 0 20px rgba(0,0,0,1), 
+      inset 2px 2px 5px rgba(255,255,255,0.1);
+}
+
+:global(.crt-content-layer) {
+   filter: contrast(1.1) brightness(1.1);
+}
+
+:global(.scanlines) {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.2) 50%);
+  background-size: 100% 4px;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+:global(.crt-overlay) {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0) 50%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 60;
+  animation: flicker 0.12s infinite;
+}
+
+:global(.screen-glare) {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, transparent 30%, transparent 70%, rgba(255,255,255,0.05) 100%);
+  border-radius: 60px / 40px;
+  z-index: 70;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+/* --- LEVER PHYSICS --- */
+
+@keyframes lever-pull-handle {
+  0% { transform: rotateX(0deg); }
+  30% { transform: rotateX(45deg); }
+  60% { transform: rotateX(50deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+@keyframes lever-pull-arm {
+  0% { transform: rotateX(0deg); }
+  30% { transform: rotateX(45deg); }
+  60% { transform: rotateX(50deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+:global(.lever-container) {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+:global(.lever-arm-wrapper.pulling) {
+  animation: lever-pull-arm 0.5s cubic-bezier(0.2, 0.6, 0.3, 1);
+  transform-origin: bottom center;
+}
+
+/* --- LIGHTS & DETAILS --- */
+@keyframes blink {
+  0%, 100% { background-color: #ffd700; box-shadow: 0 0 10px #ff8f00; filter: brightness(1.2); }
+  50% { background-color: #bfa100; box-shadow: 0 0 2px #ff8f00; filter: brightness(0.8); }
+}
+:global(.bulb-lit) { animation: blink 1s infinite; }
+
+:global(.screw) {
+  width: 12px; height: 12px;
+  background: radial-gradient(circle, #e0e0e0 0%, #909090 100%);
+  border-radius: 50%;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.8), inset -1px -1px 2px rgba(0,0,0,0.8), 1px 1px 2px rgba(0,0,0,0.5);
+  position: relative;
+}
+:global(.screw::after) {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);
+  width: 8px; height: 2px; background: #555;
+}
+:global(.screw::before) {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);
+  width: 8px; height: 2px; background: #555;
+}
+
+/* 폰트 적용 */
+:global(.classic-text) {
+  font-family: 'Rye', serif;
+}
