@@ -6,6 +6,7 @@ import { playClickSound } from '../utils/audio';
 
 const Home: React.FC = () => {
   const [games] = useState<Game[]>([
+    // 1. [실행 가능] 네온 테트리스
     {
       id: "1",
       title: "네온 테트리스",
@@ -14,13 +15,80 @@ const Home: React.FC = () => {
       tags: ["IO", "PUZZLE", "RHYTHM"],
       path: "/neon-tetris"
     },
+    // 2. [실행 가능] 폴리 리듬 마스터
     {
       id: "2",
       title: "폴리 리듬 마스터",
-      description: "3박자와 4박자가 겹쳐지는 복합 리듬을 시각적으로 경험하세요. 타이밍 감각을 극한으로 시험하는 리듬 게임입니다.",
+      description: "3박자와 4박자가 겹쳐지는 복합 리듬을 시각적으로 경험하세요. 타이밍 감각을 극한으로 시험합니다.",
       thumbnailUrl: "https://picsum.photos/400/300?random=2", 
       tags: ["RHYTHM", "MUSIC", "HARD"],
       path: "/polyrhythm"
+    },
+    // 3. [배너 추가] 한탕 특공대 (Hantang)
+    {
+      id: "3",
+      title: "한탕 특공대 (Hantang)",
+      description: "로그라이크 서바이벌! 몰려오는 적들을 막아내고 장비를 강화하여 최후의 생존자가 되세요.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=99", 
+      tags: ["SURVIVAL", "ACTION", "RPG"],
+      path: "/hantang" // 구현하셨다면 연결되고, 안 하셨다면 빈 화면이 뜹니다.
+    },
+    // --- 예정작 배너들 ---
+    {
+      id: "4",
+      title: "Pixel Slots Roguelite",
+      description: "슬롯 머신을 돌려 적을 공격하세요! 운과 전략이 결합된 픽셀 아트 로그라이트.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=3",
+      tags: ["ROGUE", "PIXEL", "CHANCE"],
+      path: "/pixel-slots"
+    },
+    {
+      id: "5",
+      title: "해킹 시뮬레이터",
+      description: "터미널을 조작하여 방화벽을 뚫고 데이터를 탈취하세요. (Hacking Sim)",
+      thumbnailUrl: "https://picsum.photos/400/300?random=4",
+      tags: ["SIMULATION", "TYPING", "HACK"],
+      path: "/hacking-sim"
+    },
+    {
+      id: "6",
+      title: "GeoTank Survival",
+      description: "끊임없이 몰려오는 도형 적들을 물리치고 탱크를 업그레이드하세요.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=5",
+      tags: ["SHOOTER", "SURVIVAL", "TANK"],
+      path: "/geotank"
+    },
+    {
+      id: "7",
+      title: "Diep-Style 1v1 Duel",
+      description: "실력을 증명할 1대1 탱크 대결. 컨트롤이 승패를 좌우합니다.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=6",
+      tags: ["PVP", "ACTION", "MULTIPLAYER"],
+      path: "/duel-1v1"
+    },
+    {
+      id: "8",
+      title: "Neon Capture",
+      description: "네온 빛깔의 영토를 점령하라. 팀 기반 전략 점령전.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=7",
+      tags: ["STRATEGY", "TEAM", "NEON"],
+      path: "/neon-capture"
+    },
+    {
+      id: "9",
+      title: "Neon Snake.io",
+      description: "꼬리가 길어질수록 살아남기 힘들어집니다. 최고의 길이를 달성하세요.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=8",
+      tags: ["IO", "CLASSIC", "SNAKE"],
+      path: "/snake-io"
+    },
+    {
+      id: "10",
+      title: "Orbit Defender",
+      description: "핵심 코어를 지키세요. Florr.io 스타일의 회전 방어 게임.",
+      thumbnailUrl: "https://picsum.photos/400/300?random=9",
+      tags: ["DEFENSE", "ORBIT", "STRATEGY"],
+      path: "/orbit-defender"
     }
   ]);
 

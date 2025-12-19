@@ -1,25 +1,47 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+
+// --- 완성된 게임 ---
 import Home from './pages/Home';
 import NeonTetris from './pages/NeonTetris';
-// [추가됨] 방금 만든 폴리 리듬 게임 임포트 (경로 주의!)
 import PolyRhythmGame from './pages/PolyRhythmGame/PolyRhythmGame';
-import Layout from './components/Layout';
+
+// --- 준비 중인 게임 (이제 오류 안 남) ---
+import Hantang from './pages/Hantang/Hantang';
+
+// --- 기타 배너용 게임들 ---
+import PixelSlots from './pages/PixelSlots/PixelSlots';
+import HackingSim from './pages/HackingSim/HackingSim';
+import GeoTank from './pages/GeoTank/GeoTank';
+import Duel1v1 from './pages/Duel1v1/Duel1v1';
+import NeonCapture from './pages/NeonCapture/NeonCapture';
+import SnakeIO from './pages/SnakeIO/SnakeIO';
+import OrbitDefender from './pages/OrbitDefender/OrbitDefender';
 
 const App: React.FC = () => {
   return (
     <HashRouter>
       <Routes>
-        {/* Layout 컴포넌트로 모든 페이지를 감쌉니다 */}
         <Route element={<Layout />}>
           {/* 메인 홈 */}
           <Route path="/" element={<Home />} />
           
-          {/* 네온 테트리스 */}
+          {/* 실행 가능한 게임 */}
           <Route path="/neon-tetris" element={<NeonTetris />} />
-          
-          {/* [추가됨] 폴리 리듬 게임 라우트 */}
           <Route path="/polyrhythm" element={<PolyRhythmGame />} />
+          
+          {/* 준비 중 화면으로 연결 */}
+          <Route path="/hantang" element={<Hantang />} />
+
+          {/* 나머지 배너들 */}
+          <Route path="/pixel-slots" element={<PixelSlots />} />
+          <Route path="/hacking-sim" element={<HackingSim />} />
+          <Route path="/geotank" element={<GeoTank />} />
+          <Route path="/duel-1v1" element={<Duel1v1 />} />
+          <Route path="/neon-capture" element={<NeonCapture />} />
+          <Route path="/snake-io" element={<SnakeIO />} />
+          <Route path="/orbit-defender" element={<OrbitDefender />} />
         </Route>
       </Routes>
     </HashRouter>
